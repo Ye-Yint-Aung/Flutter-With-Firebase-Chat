@@ -15,7 +15,9 @@ class MessageItemWidget extends StatelessWidget {
     var alignment = (data["senderId"] == auth.currentUser!.uid) ? Alignment.centerRight : Alignment.centerLeft;
     var crossAlign = (data["senderId"] == auth.currentUser!.uid) ? MainAxisAlignment.end : MainAxisAlignment.start;
     var imageAlign = (data["senderId"] == auth.currentUser!.uid) ? CrossAxisAlignment.end : CrossAxisAlignment.start;
-    var margin = (data["senderId"] == auth.currentUser!.uid) ? EdgeInsets.only(left: 20) : EdgeInsets.only(right: 20);
+    var margin = (data["senderId"] == auth.currentUser!.uid)
+        ? const EdgeInsets.only(left: 20)
+        : const EdgeInsets.only(right: 20);
 
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
@@ -32,7 +34,7 @@ class MessageItemWidget extends StatelessWidget {
                       data["imageUrl"].toString(),
                       height: 200,
                     )
-                  : SizedBox.shrink()),
+                  : const SizedBox.shrink()),
           Row(
             mainAxisAlignment: crossAlign,
             children: [
@@ -57,7 +59,7 @@ class MessageItemWidget extends StatelessWidget {
                             data["message"],
                             style: const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
                           ))
-                      : SizedBox.shrink()),
+                      : const SizedBox.shrink()),
               (data["senderId"] == auth.currentUser!.uid)
                   ? CircleAvatar(
                       backgroundColor: Colors.red,

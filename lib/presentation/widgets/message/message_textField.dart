@@ -1,9 +1,7 @@
-import 'dart:ffi';
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -35,14 +33,12 @@ class _MessageTextFieldState extends State<MessageTextField> {
     /// SEND MESSAGE
     void sendMessage(String imageUrl) async {
       if (imageUrl.isNotEmpty) {
-        print("##################3 Image url ");
         if (widget.controller.text.isEmpty) {
           await chatService.sendMessage(widget.userId, "", imageUrl);
           widget.controller.clear();
           updateTypingStatus(false);
         }
       } else {
-        print("##################3 Text");
         if (widget.controller.text.isNotEmpty) {
           await chatService.sendMessage(widget.userId, widget.controller.text, "");
           widget.controller.clear();
@@ -54,7 +50,7 @@ class _MessageTextFieldState extends State<MessageTextField> {
     return Container(
       width: MediaQuery.of(context).size.width,
       height: 100,
-      margin: EdgeInsets.symmetric(horizontal: 5),
+      margin: const EdgeInsets.symmetric(horizontal: 5),
       child: Row(
         children: [
           Expanded(
@@ -83,7 +79,7 @@ class _MessageTextFieldState extends State<MessageTextField> {
             onPressed: () async {
               final ImagePicker picker0 = ImagePicker();
               XFile? file = await picker0.pickImage(source: ImageSource.gallery);
-              print("I am image name is : ${file?.path}");
+              // print("I am image name is : ${file?.path}");
 
               if (file == null) return;
 
